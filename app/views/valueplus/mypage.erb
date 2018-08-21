@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    </head>
+    <body>
+        <h2><%= @users.email %></h2>
+        <p>프로필 이미지 :<img src="<%= @users.profile.url %>" alt="userProfile" height="100" width="100"></p></p>
+        <p>매칭여부 : <strong><%= @user.matching %></strong></p>
+        <p><소개글></p> 
+        <p><%= @users.introduce %></p>
+        <hr>
+        <p><관심분야></p>
+        <% if @category.politic == true %>
+        정치
+        <% end %>
+        <% if @category.society == true %>
+        사회
+        <% end %>
+        <% if @category.education == true %>
+        교육
+        <% end %>
+        <% if @category.labor == true %>
+        노동
+        <% end %>
+        <% if @category.foodMedi == true %>
+        식품/의료
+        <% end %>
+        <% if @category.press == true %>
+        언론
+        <% end %>
+        <% if @category.environment == true %>
+        환경
+        <% end %>
+        <% if @category.right == true %>
+        인권
+        <% end %>
+        <% if @category.female == true %>
+        여성
+        <% end %>
+        <p><능력></p>
+        <% if @ability.plan == true %>
+        기획
+        <% end %>
+        <% if @ability.mc == true %>
+        진행
+        <% end %>
+        <% if @ability.design == true %>
+        디자인
+        <% end %>
+        <% if @ability.video == true %>
+        영상
+        <% end %>
+        <% if @ability.sns == true %>
+        sns
+        <% end %>
+        <% if @users.id == current_user.id %>
+        <p><a href="/valueplus/profileEdit/<%= @users.id %>">수정하기</a></p>
+        <% end %>
+        <hr>
+        <div class ="myCareer" style="cursor:pointer">myCareer</div>
+        <div class="careerRender"><%= render "myCareer" %></div>
+        <% if @users.id == current_user.id %>
+            <div class="myAssembly" style="cursor: pointer;">myAssembly</div>
+            <div class="assemblyRender" style="display:none;"><%= render "myAssembly" %></div>
+            <div class="myScrap" style="cursor: pointer;">myScrap</div>
+            <div class="scrapRender" style="display:none;"><%= render "myScrap" %></div>
+            <div class="myDonate" style="cursor: pointer;">myDonate</div>
+            <div class="donateRender" style="display:none;"><%= render "myDonate" %></div>
+        <% end %>
+    </body>
+    <script>
+        $(document).on("click",".myCareer",function(){
+          $(".careerRender").toggle();
+        });
+        $(document).on("click",".myAssembly",function(){
+          $(".assemblyRender").toggle();
+        });
+        $(document).on("click",".myScrap",function(){
+          $(".scrapRender").toggle();
+        });
+        $(document).on("click",".myDonate",function(){
+          $(".donateRender").toggle();
+        });
+    </script>
+</html> 

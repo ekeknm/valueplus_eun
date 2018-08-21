@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <% if @myScrap %>
+            <h5><내 스크랩></h5>
+            <% @myScrap.each do |s| %>
+                <p>"<a href ="/valueplus/show/<%= s.id %>"><%=s.title%></a>"</p>
+            <% end %>
+        <% else %>
+            <p>스크랩 내역이 없습니다</p>
+        <% end %>
+    </body>
+</html>

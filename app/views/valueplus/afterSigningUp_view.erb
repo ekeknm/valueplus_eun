@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <form action= '/valueplus/afterSigningUp' method='post'>
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <input type = "hidden" name="user_id" value=<%=current_user.id%>>
+            <h4>분야선택</h4>
+                <p>
+                  <label>
+                    <input name="politic" value= true type="checkbox"/>
+                    <span>정치</span>
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    <input name="society" value= true type="checkbox"/>
+                    <span>사회</span>
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    <input name="education" value= true type="checkbox"/>
+                    <span>교육</span>
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    <input name="labor" value= true type="checkbox"/>
+                    <span>노동</span>
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    <input name="foodMedi" value= true type="checkbox"/>
+                    <span>식품/의료</span>
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    <input name="press" value= true type="checkbox"/>
+                    <span>언론</span>
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    <input name="environment" value= true type="checkbox"/>
+                    <span>환경</span>
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    <input name="right" value= true type="checkbox"/>
+                    <span>인권</span>
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    <input name="female" value= true type="checkbox"/>
+                    <span>여성</span>
+                  </label>
+                </p>
+
+
+            <h4>능력 선택</h4>
+                <p>
+                  <label>
+                    <input name="plan" value= true type="checkbox"/>
+                    <span>기획</span>
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    <input name="mc" value= true type="checkbox"/>
+                    <span>진행</span>
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    <input name="design" value= true type="checkbox"/>
+                    <span>디자인</span>
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    <input name="video" value= true type="checkbox"/>
+                    <span>영상</span>
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    <input name="sns" value= true type="checkbox"/>
+                    <span>SNS</span>
+                  </label>
+                </p>
+            
+            <h4>매칭여부 선택</h4>
+                <p>
+                  <label>
+                    <input name="matching" value= true type="radio"/>
+                    <span>yes</span>
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    <input name="matching" value= false type="radio"/>
+                    <span>no</span>
+                  </label>
+                </p>
+            
+            
+            <button class="waves-effect waves-light btn-large red" type ='submit'>submit</button>
+            
+        </form>
+    </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"> 
+        <script>
+            $(document).ready(function(){
+                $('.sortSelect').formSelect().change(function() {
+                    this.form.submit();
+                });;
+            });
+            $(document).ready(function(){
+                $('.fieldSelect').formSelect().change(function() {
+                    this.form.submit();
+                });;
+            });
+            $(document).ready(function(){
+                $('.sidoSelect').formSelect().change(function() {
+                    this.form.submit();
+                });;
+            });
+        </script>
+    </head>
+    <body>
+        
+        
+        <h2 class="list-title">집회 모아보기</h2>
+        
+        
+        <hr>
+        
+        <div class="container">
+        <div class="row">
+        
+            <div class="input-field col s2">
+                <form action="/valueplus/field" method="post">
+                    <select name="field" class="fieldSelect" style="color:red;">
+                        <option value="" disabled selected>분야</option>
+                        <option value="politic">정치</option>
+                        <option value="society">사회일반</option>
+                        <option value="education">교육</option>
+                        <option value="foodMedi">식품/의료</option>
+                        <option value="press">언론</option>
+                        <option value="environment">환경</option>
+                        <option value="right">인권/복지</option>
+                        <option value="female">여성</option>
+                    </select>
+                    <label></label>
+                </form>
+            </div>
+            
+            <div class="input-field col s2">
+                <form action="/valueplus/sido" method="post">
+                    <select name="sido" class="sortSelect">
+                        <option value="" disabled selected>지역</option>
+                        <option value="seoul">서울</option>
+                        <option value="incheon">인천</option>
+                        <option value="gyeonggi">경기</option>
+                        <option value="busan">부산</option>
+                        <option value="gangwon">강원</option>
+                        <option value="chungbuk">충북</option>
+                        <option value="sejong">세종</option>
+                        <option value="chungnam">충남</option>
+                        <option value="daejun">대전</option>
+                        <option value="gyeongbuk">경북</option>
+                        <option value="daegu">대구</option>
+                        <option value="ulsan">울산</option>
+                        <option value="gyeongnam">경남</option>
+                        <option value="junbuk">전북</option>
+                        <option value="junnam">전남</option>
+                        <option value="gwuangju">광주</option>
+                        <option value="jeju">제주</option>
+                    </select>
+                    <label></label>
+                </form>
+            </div>
+            
+            <div class="input-field col s2 right-align">
+                <form action="/valueplus/sort" method="post">
+                    <select name="sort" class="sortSelect">
+                        <option value="" disabled selected>정렬</option>
+                        <option value="like">추천순</option>
+                        <option value="recent">최신순</option>
+                    </select>
+                    <label></label>
+                </form>
+            </div>
+        
+        </div>
+        </div>
+        
+        <% @assembly.each do |a|%>
+            <p>
+                <% remain = a.calendar - Date.today %>
+                <h5><a href="/valueplus/show/<%=a.id%>"><%= a.title%></a>
+                    <% if remain == 0 %>
+                        (오늘)</h5>
+                    <% else %>
+                        (<%= remain.to_i%>일 남음)</h5>
+                    <% end %>
+            </p>
+            <p><img src="<%= a.thumbnail.url %>" alt="thumbnail" height="100" width="100"></p>
+            <p>분야 : <%= a.category%></p>
+            <p>내용 : <%=a.content%></p>
+            <p>목적 : <%=a.purpose%></p>
+            <p>날짜 :<%=a.calendar%></p>
+            <p>후원 마감 : <%=a.donateDeadline%></p>
+            <p>후원 목표 :<%=a.donateGoal%></p>
+            <p>현재까지 후원 금액 : <%= Donation.where(:assembly_id => a).sum(:donateUser) %></p>
+            <p><a href ="/valueplus/donate_view/<%= a.id %>">후원하러 가기</a></p>
+        <% end %> 
+    </body>
+    
+</html>
